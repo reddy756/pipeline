@@ -1,4 +1,4 @@
-# Jenkins Maven Tool - Unit Tests and Integration Tests
+# Jenkins Maven Tool - Unit Tests and Integration 
 ---
 ## Unit Tests vs Integration Tests:
 - **The unit test** run configuration is a part of the Maven default project configuration. Maven runs these tests automatically if following criteria are met:
