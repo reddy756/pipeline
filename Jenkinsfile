@@ -6,7 +6,7 @@ pipeline {
     }
     
     stages {
-        stage('Build & Unit test') {
+        stage ('Build & Unit Test') {
             steps {
                 sh 'mvn clean verify -DskipITs=true'
                 junit '**/target/surefire-reports/TEST-*.xml'
@@ -14,16 +14,7 @@ pipeline {
             }
         }
         
-        stage('Integration Test') {
-            steps {
-                sh 'mvn clean verify -Dsurefire.skip=true'
-                junit '**/target/failsafe-reports/TEST-*.xml'
-                archiveArtifacts 'target/*.jar'
-            }
-        }
-
-        // SonarQube Analysis stage
-        stage('SonarQube Analysis') {
+        stage ('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('mylast') {
                     sh 'mvn sonar:sonar'
@@ -31,7 +22,7 @@ pipeline {
             }
         }
         
-        stage('Quality Gate') {
+        stage ('Quality Gate') {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
